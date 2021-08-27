@@ -1,0 +1,28 @@
+package com.leonardo.curso.service;
+
+import org.springframework.stereotype.Service;
+
+import com.leonardo.curso.model.Cliente;
+import com.leonardo.curso.repository.ClientesRepositorio;
+
+
+@Service
+public class ClientesServico {
+	
+	private ClientesRepositorio repository;
+
+	public ClientesServico(ClientesRepositorio repository) {
+		
+	}
+
+	public void salvarClient(Cliente cliente) {
+		validarCliente(cliente);
+		ClientesRepositorio clientesRepositorio = new ClientesRepositorio();
+		clientesRepositorio.persistir(cliente);
+	}
+	
+	public void validarCliente(Cliente cliente) {
+		
+	}
+	
+}

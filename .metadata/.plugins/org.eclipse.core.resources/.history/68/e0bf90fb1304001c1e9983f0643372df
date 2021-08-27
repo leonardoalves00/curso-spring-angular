@@ -1,0 +1,3 @@
+application.name=sistema de vendas PRODUÇÃO
+
+spring.profiles.active=producao

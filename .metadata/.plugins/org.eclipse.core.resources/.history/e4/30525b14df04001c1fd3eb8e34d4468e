@@ -1,0 +1,5 @@
+package com.leonardo.curso.rest;
+
+public class ClienteController {
+
+}

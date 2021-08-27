@@ -1,0 +1,4 @@
+spring.application.name=sistema de vendas PRODUÇÃO
+
+server.port=8082
+server.servlet.context-path=/sistema-vendas

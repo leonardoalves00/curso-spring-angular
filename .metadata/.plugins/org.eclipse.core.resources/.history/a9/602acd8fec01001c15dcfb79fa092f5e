@@ -1,0 +1,11 @@
+package com.leonardo.curso;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MinhaConfiguration {
+	
+	public String aplicationName() {
+		return "Sistema de vendas";
+	}
+}
