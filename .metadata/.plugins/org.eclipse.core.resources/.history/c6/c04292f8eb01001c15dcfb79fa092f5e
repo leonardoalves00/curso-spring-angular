@@ -1,7 +1,0 @@
-package com.leonardo.curso;
-
-
-@configuration
-public class MinhaConfiguration {
-
-}

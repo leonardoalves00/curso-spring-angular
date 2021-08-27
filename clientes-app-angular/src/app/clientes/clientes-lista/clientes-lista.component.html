@@ -3,6 +3,17 @@
   <li class="breadcrumb-item active">Consulta</li>
 </ol>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert alert-success" role="alert" *ngIf="msgSucesso">
+      {{ msgSucesso}}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf=" msgErro ">
+      {{ msgErro }}
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-2">
@@ -31,11 +42,46 @@
             <td> {{cliente.nome}} </td>
             <td> {{cliente.cpf}} </td>
             <td> {{cliente.dataCadastro}} </td>
-            <td></td>
+            <td style="text-align: right;">
+
+              <button class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
+                <i class="fa fa-edit"></i>
+                Editar
+              </button>
+
+              <button class="btn btn-danger ml-1 " data-toggle="modal" data-target="#modalDeletar" (click)="preparaDeletar(cliente)" >
+                <i class="fa fa-trash"></i>
+                Deletar
+              </button>
+
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+
+  <div id="modalDeletar" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+      <div class=" modal-content">
+        <div class="modal-header">
+          <h4>Comfirmação</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body" *ngIf="clienteSelecionado" >
+          Que mesmo deletar cliente: {{ clienteSelecionado.nome }} ?
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary" (click)="deletarCliente()" data-dismiss="modal" >Comfirmar</button>
+          <button class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 

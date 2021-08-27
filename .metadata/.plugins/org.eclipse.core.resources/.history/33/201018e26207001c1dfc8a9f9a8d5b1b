@@ -1,0 +1,36 @@
+package com.leonardo.curso.rest;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.leonardo.curso.model.modelentity.ServicoPrestado;
+import com.leonardo.curso.model.repository.ClienteRepository;
+import com.leonardo.curso.model.repository.ServicoPrestadoRepository;
+import com.leonardo.curso.rest.dto.ServicoPestadoDTO;
+
+@RestController
+@RequestMapping("/api/servicos-prestados")
+public class ServicoPrestadoController {
+
+	
+	private final ClienteRepository clienteRepository;
+	private final ServicoPrestadoRepository servicoRepository;
+	
+	@PostMapping
+	public ServicoPrestado salvar( @RequestBody ServicoPestadoDTO dto ) {
+		
+		LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		
+		Integer idCliente = dto.getIdCliente();
+		 
+		ServicoPrestado servicoPrestado = new ServicoPrestado();
+		servicoPrestado.setDescricao(dto.getDescricao() );
+		servicoPrestado.setData(data);
+	}
+
+}

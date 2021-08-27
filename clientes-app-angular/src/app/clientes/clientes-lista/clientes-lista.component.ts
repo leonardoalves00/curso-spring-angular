@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 export class ClientesListaComponent implements OnInit {
 
   clientes: Cliente[] = [];
+  clienteSelecionado: Cliente;
+  msgSucesso: string;
+  msgErro: string;
 
   constructor(
     private router: Router,
@@ -24,6 +27,20 @@ export class ClientesListaComponent implements OnInit {
 
   novoCadastro(){
     this.router.navigate(['/clientes-form'])
+  }
+
+  preparaDeletar(cliente: Cliente){
+    this.clienteSelecionado = cliente
+  }
+
+  deletarCliente(){
+    this.service
+      .deletar(this.clienteSelecionado)
+      .subscribe(
+        resposta => {
+          this.msgSucesso = 'Cliente deletado com Sucesso.'
+          this.ngOnInit()},
+        erro => this.msgErro = 'Ocorreu um erro ao deletar o cliente.')
   }
 
 }
