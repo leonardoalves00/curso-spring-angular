@@ -1,0 +1,34 @@
+package com.leonardo.curso.config;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.catalina.filters.CorsFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+
+@Configuration
+public class WebConfig {
+
+	public FilterRegistrationBean<CorsFilter> corsFilterRegistrationBean() {
+		List<String> all = Arrays.asList("*");
+		
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		
+		corsConfiguration.setAllowedOrigins(all);
+		corsConfiguration.setAllowedHeaders(all);
+		corsConfiguration.setAllowedMethods(all);
+		corsConfiguration.setAllowCredentials(true);
+		
+		UrlBasedCorsConfigurationSource sourse = new UrlBasedCorsConfigurationSource();
+		sourse.registerCorsConfiguration("/**", corsConfiguration);
+		
+		CorsFilter corsFilter = new CorsFilter(sourse);
+		FilterRegistrationBean<CorsFilter> filterRegistrationBean new FilterRegistrationBean<>();
+		
+		return ;
+	}
+	
+}

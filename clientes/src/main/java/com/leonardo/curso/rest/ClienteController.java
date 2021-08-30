@@ -25,7 +25,6 @@ import com.leonardo.curso.model.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/api/clientes")
-@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 	
 	@Autowired

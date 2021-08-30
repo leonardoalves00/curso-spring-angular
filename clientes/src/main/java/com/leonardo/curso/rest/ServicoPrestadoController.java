@@ -3,9 +3,9 @@ package com.leonardo.curso.rest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.leonardo.curso.model.modelentity.Cliente;
 import com.leonardo.curso.model.modelentity.ServicoPrestado;
 import com.leonardo.curso.model.repository.ClienteRepository;
@@ -24,12 +23,12 @@ import com.leonardo.curso.model.repository.ServicoPrestadoRepository;
 import com.leonardo.curso.rest.dto.ServicoPestadoDTO;
 import com.leonardo.curso.util.BigDecimalConverter;
 
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/servicos-prestados")
 @RequiredArgsConstructor
+
 public class ServicoPrestadoController {
 	
 	private final ClienteRepository clienteRepository;
@@ -38,7 +37,7 @@ public class ServicoPrestadoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ServicoPrestado salvar( @RequestBody ServicoPestadoDTO dto ) {
+	public ServicoPrestado salvar( @RequestBody @Valid ServicoPestadoDTO dto ) {
 		
 		//tratamento de data
 		LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -61,11 +60,11 @@ public class ServicoPrestadoController {
 	
 	@GetMapping
 	public List<ServicoPrestado> pesquisar(
-			@RequestParam(value = "nome", required = false) String nome,
+			@RequestParam(value = "nome", required = false, defaultValue = "") String nome,
 			@RequestParam(value = "mes", required = false) Integer mes
 	) {
 		
-		return servicoRepository.findByNomeClienteAndMes(nome, mes);
+		return servicoRepository.findByNomeClienteAndMes("%" + nome +  "%", mes);
 	}
 
 }

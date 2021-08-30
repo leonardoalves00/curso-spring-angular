@@ -27,4 +27,5 @@ public class internalizacaoConfig {
 		bean.setValidationMessageSource(messageSource());
 		return bean;
 	}
+	
 }
