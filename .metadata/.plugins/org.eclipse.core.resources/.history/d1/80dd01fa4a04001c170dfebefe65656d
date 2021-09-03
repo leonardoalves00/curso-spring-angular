@@ -1,5 +1,0 @@
-package com.leonardo.curso.model.repository;
-
-public interface ServicoRepository {
-
-}

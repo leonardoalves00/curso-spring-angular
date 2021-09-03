@@ -3,11 +3,6 @@ package com.leonardo.curso;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import com.leonardo.curso.model.modelentity.Cliente;
-import com.leonardo.curso.model.repository.ClienteRepository;
-
 
 @SpringBootApplication
 public class ClientesApplication {

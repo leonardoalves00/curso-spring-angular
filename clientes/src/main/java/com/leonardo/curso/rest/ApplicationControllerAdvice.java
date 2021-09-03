@@ -15,9 +15,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.leonardo.curso.rest.exception.ApiErrors;
 
 
-
-
-
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
 
@@ -36,7 +33,7 @@ public class ApplicationControllerAdvice {
 	
 	@ExceptionHandler(ResponseStatusException.class)
 	public ResponseEntity<String> handleResponseStatusException( ResponseStatusException ex) {
-		String mensagemErro = ex.getMessage();
+		String mensagemErro = ex.getReason();
 		HttpStatus codigoStatus = ex.getStatus();
 		ApiErrors apiErrors = new ApiErrors(mensagemErro);
 		
